@@ -419,6 +419,7 @@ void CGameStateOver::OnShow()
 CGameStateRun::CGameStateRun(CGame *g)
 : CGameState(g), NUMBALLS(28)
 {
+	picX = picY = 0;
 	ball = new CBall [NUMBALLS];
 }
 
@@ -456,7 +457,14 @@ void CGameStateRun::OnBeginState()
 
 void CGameStateRun::OnMove()							// 移動遊戲元素
 {
-	practice.SetTopLeft(10,10);
+	//practice.SetTopLeft(10,10);
+	if(picX <= SIZE_Y){
+		picX += 5;
+		picY += 5;
+	}
+	else
+		picX = picY = 0;
+	practice.SetTopLeft(picX,picY);
 
 	//
 	// 如果希望修改cursor的樣式，則將下面程式的commment取消即可
@@ -620,7 +628,7 @@ void CGameStateRun::OnShow()
 	corner.ShowBitmap();
 	corner.SetTopLeft(SIZE_X-corner.Width(), SIZE_Y-corner.Height());
 	corner.ShowBitmap();
-	//practice.ShowBitmap();
+	practice.ShowBitmap();
 }
 
 }

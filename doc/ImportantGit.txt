@@ -8,6 +8,7 @@ $ git reset HEAD lib/cat.rb
 
 cancel tracked file(not in git anymore)
 $ git rm README.txt
+(git rm --cached project1.suo)
 
 cancel the modified file back to last status
 (give up any modify I did before)
@@ -35,6 +36,9 @@ $ git reset --hard
 
 cancel wrong git homemaster
 $ rm -rf .git
+
+only add modified files
+$ git add -u
 
 soft : add modified in stage
 hard : cancel all modified 
