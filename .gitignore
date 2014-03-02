@@ -3,3 +3,5 @@ game4.8/ipch/
 game4.8/Setup/
 game4.8/game.sdf
 game4.8/*.lib
+game4.8/*.opensdf
+gane4.8/*.suo

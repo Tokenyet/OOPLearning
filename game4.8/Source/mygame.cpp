@@ -516,7 +516,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 		ball[i].LoadBitmap();								// 載入第i個球的圖形
 	eraser.LoadBitmap();
 	background.LoadBitmap(IDB_BACKGROUND);					// 載入背景的圖形
-	practice.LoadBitmapA("Bitmaps/20.bmp");
+	practice.LoadBitmapA("Bitmaps/20.bmp",RGB(255,255,255));
 	//
 	// 完成部分Loading動作，提高進度
 	//
@@ -620,7 +620,7 @@ void CGameStateRun::OnShow()
 	corner.ShowBitmap();
 	corner.SetTopLeft(SIZE_X-corner.Width(), SIZE_Y-corner.Height());
 	corner.ShowBitmap();
-	practice.ShowBitmap();
+	//practice.ShowBitmap();
 }
 
 }

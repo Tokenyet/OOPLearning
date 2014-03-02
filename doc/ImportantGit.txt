@@ -17,6 +17,9 @@ $ git checkout -- lib/cat.rb
 modify commit-title last commited
 $ git commit --amend
 
+modify branch name
+$ git branch -m now_name what_u_want_name
+
 Cancel Commit once before
 git reset HEAD^ --soft (keep modified files here)
 git reset HEAD^ --hard (just like revert to last version)
