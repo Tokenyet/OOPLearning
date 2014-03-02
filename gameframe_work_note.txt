@@ -1,0 +1,6 @@
+1-0.Create Something 
+	Put Picture in Bitmap
+	Declare a object by CMovingBitmap
+	LoadBitmap in CGameStateRun Oninit;
+	SetTopLeft in CGameStateRun OnMove;
+	ShowBitmap in CGameStateRun OnShow;
