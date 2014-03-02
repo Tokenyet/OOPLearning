@@ -13,4 +13,11 @@
 	Write Moving Method in CGameStateRun OnMove;
 	1-0Show
 
+2-0.Create_a_class which have Construct LoadBitmap OnMove Onshow
+	Create Class(cons,LoadPic,Move,Show,privateMovingPic,x,y)
+	implement all above
+	put all thing like 1-0
+
+	
+
 

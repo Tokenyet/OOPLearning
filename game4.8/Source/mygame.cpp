@@ -289,6 +289,32 @@ void CEraser::OnShow()
 	animation.OnShow();
 }
 
+	CPractice::CPractice()
+	{
+		x = y = 0;
+	}
+	void CPractice::LoadBitmap()
+	{
+		pic.LoadBitmapA("Bitmaps/20.bmp");
+	}
+	void CPractice::OnMove()
+	{
+		if(y <= SIZE_Y)
+		{
+			x += 3;
+			y += 3;
+		}
+		else
+			x = y = 0;
+		pic.SetTopLeft(x,y);
+	}
+	void CPractice::OnShow()
+	{
+		pic.ShowBitmap();
+	}
+
+
+
 /////////////////////////////////////////////////////////////////////////////
 // 這個class為遊戲的遊戲開頭畫面物件
 /////////////////////////////////////////////////////////////////////////////
@@ -465,7 +491,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	else
 		picX = picY = 0;
 	practice.SetTopLeft(picX,picY);
-
+	cpractice.OnMove();
 	//
 	// 如果希望修改cursor的樣式，則將下面程式的commment取消即可
 	//
@@ -524,6 +550,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 		ball[i].LoadBitmap();								// 載入第i個球的圖形
 	eraser.LoadBitmap();
 	background.LoadBitmap(IDB_BACKGROUND);					// 載入背景的圖形
+	cpractice.LoadBitmapA();
 	practice.LoadBitmapA("Bitmaps/20.bmp",RGB(255,255,255));
 	//
 	// 完成部分Loading動作，提高進度
@@ -629,6 +656,7 @@ void CGameStateRun::OnShow()
 	corner.SetTopLeft(SIZE_X-corner.Width(), SIZE_Y-corner.Height());
 	corner.ShowBitmap();
 	practice.ShowBitmap();
+	cpractice.OnShow();
 }
 
 }

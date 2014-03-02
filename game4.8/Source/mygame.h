@@ -131,6 +131,19 @@ private:
 	CAnimation animation;	// 利用動畫作圖形
 };
 
+
+class CPractice
+{
+	public:
+	CPractice();
+	void LoadBitmap();		// 載入圖形
+	void OnMove();			// 移動
+	void OnShow();			// 將圖形貼到畫面
+private:
+	int x, y;				// 圖形座標
+	CMovingBitmap pic;
+};
+
 /////////////////////////////////////////////////////////////////////////////
 // 這個class為遊戲的遊戲開頭畫面物件
 // 每個Member function的Implementation都要弄懂
@@ -173,6 +186,7 @@ protected:
 private:
 	int				picX,picY;
 	CMovingBitmap   practice;
+	CPractice       cpractice;
 	const int		NUMBALLS;	// 球的總數
 	CMovingBitmap	background;	// 背景圖
 	CMovingBitmap	help;		// 說明圖
