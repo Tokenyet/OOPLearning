@@ -198,6 +198,26 @@ void CBouncingBall::OnShow()
 	animation.OnShow();
 }
 
+void CBouncingBall::SetFloor(int floor)
+{
+	this->floor  = floor;
+
+}
+
+void CBouncingBall::SetXY(int x,int y)
+{
+	this->x = x;
+	this->y = y;
+}
+
+void CBouncingBall::SetVelocity(int velocity)
+{
+	this->velocity = velocity;
+	this->initial_velocity = velocity;
+}
+
+
+
 /////////////////////////////////////////////////////////////////////////////
 // CEraser: Eraser class
 /////////////////////////////////////////////////////////////////////////////
@@ -692,9 +712,9 @@ void CGameStateRun::OnShow()
 	help.ShowBitmap();					// 貼上說明圖
 	cgamemap.OnShow();
 	hits_left.ShowBitmap();
-	for (int i=0; i < NUMBALLS; i++)
+	/*for (int i=0; i < NUMBALLS; i++)
 		ball[i].OnShow();				// 貼上第i號球
-	bball.OnShow();						// 貼上彈跳的球
+	bball.OnShow();		*/				// 貼上彈跳的球
 	eraser.OnShow();					// 貼上擦子
 	//
 	//  貼上左上及右下角落的圖
