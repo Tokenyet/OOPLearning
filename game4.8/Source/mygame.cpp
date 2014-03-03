@@ -321,6 +321,7 @@ CGameMap::CGameMap()
 	for(int i =0;i<4;i++)
 		for(int j=0;j<5;j++)
 			map[i][j] = map_init[i][j];
+	random_num = 0;
 }
 
 void CGameMap::LoadBitmap()
@@ -349,11 +350,56 @@ void CGameMap::OnShow()
 			default:
 				ASSERT(0);
 			}
+	for(int i =0;i<random_num;i++)
+		bballs[i].OnShow();
 
 }
 
 
+void CGameMap::OnMove()
+{
+	for(int i =0;i<random_num;i++)
+		bballs[i].OnMove();
 
+}
+void CGameMap::OnKeyDown(UINT nChar)
+{
+	const int KEY_SPACE = 0x20;
+	if(nChar == KEY_SPACE)
+		RandomBouncingBall();
+}
+void CGameMap::RandomBouncingBall()
+{
+	const int MAX_RAND_NUM = 10;
+	random_num = (rand()%MAX_RAND_NUM)+1;
+
+	bballs = new CBouncingBall[random_num];
+	int ini_index = 0;
+	for(int row = 0;row <4;row++)
+		for(int col=0;col<5;col++)
+		{
+			if(map[row][col]!=0&& ini_index < random_num)
+			{
+				InitializeBouncingBall(ini_index,row,col);
+				ini_index++;
+			}
+		}
+}
+void CGameMap::InitializeBouncingBall(int ini_index,int row,int col)
+{
+	const int VELOCITY = 10;
+	const int BALL_PIC_HEIGHT = 15;
+	int floor = y +(row+1)*mh-BALL_PIC_HEIGHT;
+
+	bballs[ini_index].LoadBitmapA();
+	bballs[ini_index].SetFloor(floor);
+	bballs[ini_index].SetVelocity(VELOCITY+col);
+	bballs[ini_index].SetXY(x+col*mw+mw/2,floor);
+}
+CGameMap::~CGameMap()
+{
+
+}
 
 	CPractice::CPractice()
 	{
@@ -599,6 +645,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	// 移動彈跳的球
 	//
 	bball.OnMove();
+	cgamemap.OnMove();
 }
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
@@ -646,6 +693,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_UP    = 0x26; // keyboard上箭頭
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
+	cgamemap.OnKeyDown(nChar);
 	if (nChar == KEY_LEFT)
 		eraser.SetMovingLeft(true);
 	if (nChar == KEY_RIGHT)
@@ -725,6 +773,8 @@ void CGameStateRun::OnShow()
 	corner.ShowBitmap();
 	practice.ShowBitmap();
 	cpractice.OnShow();
+
+
 }
 
 }
