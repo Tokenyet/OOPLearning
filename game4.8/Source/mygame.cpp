@@ -322,6 +322,7 @@ CGameMap::CGameMap()
 		for(int j=0;j<5;j++)
 			map[i][j] = map_init[i][j];
 	random_num = 0;
+	bballs =NULL;
 }
 
 void CGameMap::LoadBitmap()
@@ -372,7 +373,8 @@ void CGameMap::RandomBouncingBall()
 {
 	const int MAX_RAND_NUM = 10;
 	random_num = (rand()%MAX_RAND_NUM)+1;
-
+	if(bballs != NULL)
+	delete[] bballs;
 	bballs = new CBouncingBall[random_num];
 	int ini_index = 0;
 	for(int row = 0;row <4;row++)
@@ -398,7 +400,10 @@ void CGameMap::InitializeBouncingBall(int ini_index,int row,int col)
 }
 CGameMap::~CGameMap()
 {
-
+	//delete[] bballs; 
+	//其實memoryleaks暫時與這裡無關
+	//只是記得指標NULL new會重複使用要delete[]
+	//如果不會則一定要使用解構
 }
 
 	CPractice::CPractice()
