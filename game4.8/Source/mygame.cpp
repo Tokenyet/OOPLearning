@@ -289,6 +289,52 @@ void CEraser::OnShow()
 	animation.OnShow();
 }
 
+CGameMap::CGameMap()
+	:x(20),y(40),mw(120),mh(100)
+{
+	int map_init[4][5] =
+	{{0,0,1,0,0},
+	 {0,1,2,1,0},
+	 {1,2,1,2,1},
+	 {2,1,2,1,2}};
+
+	for(int i =0;i<4;i++)
+		for(int j=0;j<5;j++)
+			map[i][j] = map_init[i][j];
+}
+
+void CGameMap::LoadBitmap()
+{
+	blue.LoadBitmapA(IDB_BLUE);
+	green.LoadBitmapA(IDB_GREEN);
+}
+
+
+void CGameMap::OnShow()
+{
+	for(int i =0;i<4;i++)
+		for(int j =0;j<5;j++)
+			switch(map[i][j])
+			{
+			case 0:
+				break;
+			case 1:
+				blue.SetTopLeft(x + (mw*j),y+(mw*i));
+				blue.ShowBitmap();
+				break;
+			case 2:
+				green.SetTopLeft(x + (mw*j),y+(mw*i));
+				green.ShowBitmap();
+				break;
+			default:
+				ASSERT(0);
+			}
+
+}
+
+
+
+
 	CPractice::CPractice()
 	{
 		x = y = 0;
@@ -552,6 +598,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	background.LoadBitmap(IDB_BACKGROUND);					// 載入背景的圖形
 	cpractice.LoadBitmapA();
 	practice.LoadBitmapA("Bitmaps/20.bmp",RGB(255,255,255));
+	cgamemap.LoadBitmap();
 	//
 	// 完成部分Loading動作，提高進度
 	//
@@ -643,6 +690,7 @@ void CGameStateRun::OnShow()
 	//
 	background.ShowBitmap();			// 貼上背景圖
 	help.ShowBitmap();					// 貼上說明圖
+	cgamemap.OnShow();
 	hits_left.ShowBitmap();
 	for (int i=0; i < NUMBALLS; i++)
 		ball[i].OnShow();				// 貼上第i號球

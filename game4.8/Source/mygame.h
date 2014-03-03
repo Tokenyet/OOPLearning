@@ -149,7 +149,7 @@ class CGameMap
 public:
 	CGameMap();
 	void LoadBitmap();
-	void OnShoww();
+	void OnShow();
 protected:
 	CMovingBitmap blue,green;
 	int map[4][5];
@@ -197,6 +197,7 @@ protected:
 	void OnMove();									// 移動遊戲元素
 	void OnShow();									// 顯示這個狀態的遊戲畫面
 private:
+	CGameMap		cgamemap;
 	int				picX,picY;
 	CMovingBitmap   practice;
 	CPractice       cpractice;
