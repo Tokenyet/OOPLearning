@@ -40,6 +40,12 @@ $ rm -rf .git
 only add modified files
 $ git add -u
 
+back to certain commit but not kill other commit
+$ git reset <SHA>
+$ git reset origin/master
+
+
+
 soft : add modified in stage
 hard : cancel all modified 
 
